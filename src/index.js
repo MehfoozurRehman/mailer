@@ -3,12 +3,9 @@ const nodemailer = require("nodemailer");
 const hbs = require("nodemailer-express-handlebars");
 
 async function mailer(from, to, template, data, user, pass) {
-  let transporter = nodemailer.createTransport({
+  const transporter = nodemailer.createTransport({
     service: "gmail",
-    auth: {
-      user: user,
-      pass: pass,
-    },
+    auth: { user, pass },
   });
 
   transporter.use(
@@ -24,23 +21,23 @@ async function mailer(from, to, template, data, user, pass) {
     })
   );
 
-  let mailOptions = {
-    from: from,
-    to: to,
+  const mailOptions = {
+    from,
+    to,
     subject: data.subject,
-    template: template,
+    template,
     context: data,
   };
 
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log({ message: error });
-    } else {
-      console.log({
-        message: "Email sent: " + info.response,
-      });
-    }
-  });
+  const { error, info } = await transporter.sendMail(mailOptions);
+
+  if (error) {
+    console.log({ message: error });
+  } else {
+    console.log({
+      message: `Email sent: ${info.response}`,
+    });
+  }
 }
 
 module.exports = mailer;
