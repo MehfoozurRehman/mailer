@@ -23,16 +23,16 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
-    "nodemailer": "^6.9.1",
-    "nodemailer-express-handlebars": "^6.1.0"
+    "nodemailer": "^6.9.13",
+    "nodemailer-express-handlebars": "^6.1.2"
   },
   "scripts": {
     "build": "rm -rf dist && babel src --out-dir dist --copy-files"
   },
   "devDependencies": {
-    "@babel/cli": "^7.21.0",
-    "@babel/core": "^7.21.4",
-    "@babel/preset-env": "^7.21.4",
+    "@babel/cli": "^7.24.5",
+    "@babel/core": "^7.24.5",
+    "@babel/preset-env": "^7.24.5",
     "babel-preset-minify": "^0.5.2"
   }
 }
